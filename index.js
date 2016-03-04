@@ -15,14 +15,13 @@ module.exports = function(source_code,callback){
     var for_trans_words = [] //需要百度翻译的单词
 
     /*--------遍历ast，找出所有定义的变量-----*/
+    //为何分成两次，为了排除没有定义而直接使用的全局变量
     ast_code.walk(new UglifyJS.TreeWalker(function(node){
-        //console.log(Object.getPrototypeOf(node).TYPE
+        //如果是变量定义的节点
         if(node instanceof UglifyJS.AST_SymbolVar){
             varNodes.push(node);
             for_trans_words.push(node.name);
         }
-
-
     }));
     ast_code.walk(new UglifyJS.TreeWalker(function(node){
         if(node instanceof UglifyJS.AST_SymbolRef){
@@ -31,8 +30,6 @@ module.exports = function(source_code,callback){
                 for_trans_words.push(node.name);
             }
         }
-
-
     }));
 
 
@@ -58,7 +55,7 @@ module.exports = function(source_code,callback){
 }
 
 /**
- * 把一个object里的value都变成唯一的，如果不是唯一的，给他加_1
+ * 把一个object里的value都变成唯一的，如果不是唯一的，给他加_1，如果出现两次则_2
  * @param obj
  */
 var makeUniqObject = function(obj){
@@ -66,7 +63,6 @@ var makeUniqObject = function(obj){
     for(var i in obj){
         var value = obj[i];
         if(scaned_values.indexOf(value)!=-1){
-
             var repeat_count = 0;
             scaned_values.forEach(function(v){
                 if(v==value){
