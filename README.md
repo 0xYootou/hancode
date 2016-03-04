@@ -7,7 +7,7 @@
 
 使用方式：
 
-```
+```bash
 sudo npm install hancode -g;
 
 #定位到某个目录
@@ -20,7 +20,7 @@ hancode -s ./code.js
 
 示例：
 
-```
+```javascript
 var 丑化JS = require("uglify-js");
 
 var _ = require("underscore");
