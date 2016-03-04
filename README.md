@@ -18,6 +18,12 @@ hancode -s ./code.js
 
 ```
 
+todolist
+
+ * 翻译属性名
+ * 多个文件联合编译
+ 
+
 示例：
 
 ```javascript
