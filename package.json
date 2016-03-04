@@ -1,0 +1,20 @@
+{
+  "name": "hancode",
+  "version": "1.0.7",
+  "description": "把js代码里的变量翻译成中文",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "minimist": "^1.2.0",
+    "request": "^2.69.0",
+    "uglify-js": "^2.6.2",
+    "underscore": "^1.8.3"
+  },
+  "bin": {
+    "hancode": "./bin/cli"
+  }
+}
