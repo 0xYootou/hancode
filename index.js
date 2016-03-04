@@ -37,11 +37,12 @@ module.exports = function(source_code,callback){
 
 
     for_trans_words = _.uniq(for_trans_words);
-    console.log(for_trans_words)
+    //console.log(for_trans_words)
     /*--------找出所有需要翻译的单词---------*/
     console.log("翻译中");
     translate_util(for_trans_words,function(e,result){
         translate_obj = result;
+        makeUniqObject(translate_obj);
         /*--------替换所有单词-----------------*/
         varNodes.forEach(function(node){
             node.name = translate_obj[node.name]||node.name;
@@ -49,8 +50,6 @@ module.exports = function(source_code,callback){
         refNodes.forEach(function(node){
             node.name = translate_obj[node.name]||node.name;
         })
-        //console.log("编译前：")
-        //console.log(source_code)
         callback(null,ast_code.print_to_string({
             beautify:true
         }));
@@ -58,5 +57,26 @@ module.exports = function(source_code,callback){
     })
 }
 
+/**
+ * 把一个object里的value都变成唯一的，如果不是唯一的，给他加_1
+ * @param obj
+ */
+var makeUniqObject = function(obj){
+    var scaned_values = []
+    for(var i in obj){
+        var value = obj[i];
+        if(scaned_values.indexOf(value)!=-1){
+
+            var repeat_count = 0;
+            scaned_values.forEach(function(v){
+                if(v==value){
+                    repeat_count++;
+                }
+            })
+            obj[i] = value+"_"+repeat_count
+        }
+        scaned_values.push(value);
+    }
+}
 
 

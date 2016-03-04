@@ -4,9 +4,9 @@
 var HanCode = require('../index.js')
 var path = require("path");
 var argv = require('minimist')(process.argv.slice(2));
-var source = argv.s;
+var source = path.join(process.cwd(),argv.s);
 var fs = require("fs");
-HanCode(fs.readFileSync(path.join(process.cwd(),source),'utf-8'),function(err,code){
+HanCode(fs.readFileSync(source,'utf-8'),function(err,code){
         var result_path = source.replace(".js",".汉.js");
         console.log("编译成功，目标路径："+result_path)
         fs.writeFileSync(result_path,code,'utf-8')

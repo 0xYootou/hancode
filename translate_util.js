@@ -64,7 +64,6 @@ module.exports = function(strs,callback){
         to: to,
         sign: sign
     }
-    console.log(qs)
     request.get({
         url: 'http://api.fanyi.baidu.com/api/trans/vip/translate',
         qs: {
@@ -76,13 +75,13 @@ module.exports = function(strs,callback){
             sign: sign
         }
     },function(e,r,body){
-        console.log(body)
         var result = {},res;
         try{
             res = JSON.parse(body);
             if(res.trans_result){
                 res.trans_result.forEach(function(r){
-                    result[wordTransformTemp[r.src]||r.src] = r.dst.replace(/ /g,"_").replace(/ /g,"");
+                    var dst = r.dst.replace(/ /g,"_");
+                    result[wordTransformTemp[r.src]||r.src] = dst;
                 })
             }
         }catch(e){
