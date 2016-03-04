@@ -16,6 +16,8 @@ hancode -s ./code.js
 
 #会在当前目录生成一个 code.汉.js
 
+#code.汉.js 的代码其实就是本库的中文版，测试可以跑通，并且结果一样。
+
 ```
 
 todolist

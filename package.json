@@ -1,6 +1,6 @@
 {
   "name": "hancode",
-  "version": "1.1.2",
+  "version": "1.1.3",
   "description": "把js代码里的变量翻译成中文",
   "main": "index.js",
   "scripts": {

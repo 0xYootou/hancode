@@ -27,8 +27,9 @@ module.exports = function(源代码, 回调) {
     }));
     跨语言 = _.uniq(跨语言);
     console.log("翻译中");
-    翻译工具(跨语言.join("\n"), function(E, 结果) {
+    翻译工具(跨语言, function(E, 结果) {
         翻译对象 = 结果;
+        使uniq对象(翻译对象);
         无功节点.forEach(function(结) {
             结.name = 翻译对象[结.name] || 结.name;
         });
@@ -39,4 +40,21 @@ module.exports = function(源代码, 回调) {
             beautify: true
         }));
     });
+};
+
+var 使uniq对象 = function(obj) {
+    var 扫描值 = [];
+    for (var 我 in obj) {
+        var 价值 = obj[我];
+        if (扫描值.indexOf(价值) != -1) {
+            var 重复计数 = 0;
+            扫描值.forEach(function(v) {
+                if (v == 价值) {
+                    重复计数++;
+                }
+            });
+            obj[我] = 价值 + "_" + 重复计数;
+        }
+        扫描值.push(价值);
+    }
 };
